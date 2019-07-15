@@ -10,6 +10,16 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+mongoose.connect(
+  process.env.MONGODB_URI || 
+   "mongodb://katvengo:Horses100@ds345587.mlab.com:45587/heroku_pzjpkkjh",
+   { useNewUrlParser: true }
+  );
+
+mongoose.set('useFindAndModify', false);
+mongoose.set('debug', true)
+
+
 
 // Define API routes here
 
