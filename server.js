@@ -19,6 +19,9 @@ mongoose.connect(
 mongoose.set('useFindAndModify', false);
 mongoose.set('debug', true)
 
+var routes = require("./controller/book_controller.js");
+
+app.use(routes);
 
 // Define API routes here
 
