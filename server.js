@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === "production") {
 }
 mongoose.connect(
   process.env.MONGODB_URI || 
-   "mongodb://katvengo:Horses100@ds345587.mlab.com:45587/heroku_pzjpkkjh",
+   "mongodb://katvengo:Horses100@ds135217.mlab.com:35217/heroku_tx0dp1xj",
    { useNewUrlParser: true }
   );
 
@@ -20,10 +20,10 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('debug', true)
 
 
-
 // Define API routes here
 
 // Send every other request to the React app
+
 // Define any API routes before this runs
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
