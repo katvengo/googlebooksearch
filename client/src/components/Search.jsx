@@ -1,5 +1,5 @@
 import React from "react";
-
+import Results from './Results'
 
 const styles = {
   short: {
@@ -20,7 +20,26 @@ const styles = {
   },
 };
 class Search extends React.Component {
-    state = {  }
+    state = { 
+      search: ''
+     }
+     searchGoogle = query => {
+      API.search(query)
+        .then(res => this.setState({ results: res.data.data }))
+        .catch(err => console.log(err));
+    };
+  
+    handleInputChange = event => {
+      const name = event.target.name;
+      this.setState({
+        [name]: value
+      });
+    };
+     handleFormSubmit = event => {
+      event.preventDefault();
+      this.searchGoogle(this.state.search);
+    };
+
     render() { 
         return ( 
             <>
@@ -36,15 +55,26 @@ class Search extends React.Component {
 
  <body>
 <div> 
-<span><input className="input" type="text" placeholder="Search for a Book" style={styles.short}/></span>
-<span><button className="button is-info" style={styles.searchButton}>
+<span>
+  <input className="input" 
+  type="text" 
+  placeholder="Search for a Book"
+  style={styles.short}
+  value={this.state.search}
+  handleFormSubmit={this.handleFormSubmit}
+  handleInputChange={this.handleInputChange}
+  name="search"
+  id="search"
+  />
+</span>
+<span><button className="button is-info" style={styles.searchButton} onClick={this.handleFormSubmit} >
             Search
           </button></span>
 </div>
   <section className="section">
     <div className="container">
       <h1 className="title">Results</h1>
-          Rendered Books
+          <Results />
       
     </div>
   </section>
