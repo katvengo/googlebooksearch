@@ -1,10 +1,7 @@
 const express = require("express");
 const router = express.Router();
-var axios = require("axios");
-var cheerio = require("cheerio");
 var app = express()
 var bodyParser = require("body-parser");
-var path = require("path")
 
 app.use(bodyParser.urlencoded({
   extended: false
@@ -12,7 +9,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-var db = require("../models");
+var db = require("../models/Book");
 
 router.get('/api/books', function(req, res) {
 db.Book.find({})
