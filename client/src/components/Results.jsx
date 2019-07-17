@@ -12,7 +12,7 @@ function Results(props) {
     <div className="media-content">
       <div className="content">
         <p>
-          <strong>Book Title: {props.title}</strong> <br />
+          <strong><a href={props.link}> Book Title:{props.title}</a></strong> <br />
           <strong>Authors: {props.author}</strong>
 
           <br/>

@@ -92,9 +92,9 @@ class Search extends React.Component {
                   title={book.volumeInfo.title}
                   author={book.volumeInfo.authors}
                   description={book.volumeInfo.description}
+                  link={book.volumeInfo.infoLink}
                 />
               ))}
-              {/* {console.log("res data" + this.state.res.data)} */}
             </div>
           </section>
         </body>
