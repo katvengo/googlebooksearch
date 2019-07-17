@@ -27,7 +27,7 @@ class Search extends React.Component {
   searchGoogle = query => {
     API.search(query)
       .then(res => {
-        console.log(res.data);
+        console.log(res.data.items);
         this.setState({ books: res.data.items });
       })
       .catch(err => console.log(err));
@@ -88,10 +88,10 @@ class Search extends React.Component {
               <h1 className="title">Results</h1>
               {this.state.books.map(book => (
                 <Results
-                  image={this.state.books.image}
-                  title={this.state.books.title}
-                  author={this.state.books.author}
-                  description={this.state.books.description}
+                  image={book.volumeInfo.imageLinks.thumbnail}
+                  title={book.volumeInfo.title}
+                  author={book.volumeInfo.authors}
+                  description={book.volumeInfo.description}
                 />
               ))}
               {/* {console.log("res data" + this.state.res.data)} */}

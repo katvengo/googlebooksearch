@@ -12,11 +12,11 @@ function Results(props) {
     <div className="media-content">
       <div className="content">
         <p>
-          <strong>Title={props.title}</strong> <br />
-          <strong>author={props.author}</strong>
+          <strong>Book Title: {props.title}</strong> <br />
+          <strong>Authors: {props.author}</strong>
 
           <br/>
-            Description={props.description}
+            {props.description}
         </p>
       </div>
       <nav className="level is-mobile">
