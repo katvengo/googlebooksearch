@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const styles = {
   title: {
@@ -30,13 +31,13 @@ class NavBar extends React.Component {
 
   <div id="navbarBasicExample" className="navbar-menu">
     <div className="navbar-start">
-      <a className="navbar-item" href="/" style={styles.title}>
+      <Link to="/search" className="navbar-item" style={styles.title}>
         Search
-      </a>
+      </Link>
 
-      <a className="navbar-item" href="/" style={styles.title}>
+      <Link to="/saved"className="navbar-item" style={styles.title}>
         Saved
-      </a>
+      </Link>
     </div>
 
   </div>

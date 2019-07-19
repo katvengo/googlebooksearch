@@ -1,44 +1,30 @@
-const express = require("express");
-const router = express.Router();
-var app = express()
-var bodyParser = require("body-parser");
+const db = require("../models")
 
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
-
-app.use(bodyParser.json());
-
-var db = require("../models/Book");
-
-router.get('/api/books', function(req, res) {
-db.Book.find({})
-.then(function(dbBook){
-   res.send(dbBook) 
-})
-.catch(function(error){
-    res.json(error)
-})});
-
-router.post('/api/books', function(req, res) {
-db.Book.create()
-.then(function(dbBook){
-    res.render()
-})
-.catch(function(error){
-    res.json(error)
-})
-});
-
-router.get('/api/books/:id', function(req, res) {
-var id = req.params.id
-db.Book.findOne({_id: id})
-.then(function(dbBook){
-   res.send(dbBook) 
-})
-.catch(function(error){
-    res.json(error)
-})});
-
-
-module.exports = router
+module.exports = {
+create: function(req, res){
+  console.log('in server:', req.body)
+    db.Book
+       .create(req.body)
+       .then(dbBook => res.json(dbBook))
+       .catch(err => res.status(422).json(err))
+},
+findById: function(req, res) {
+    db.Book
+      .findById(req.params.id)
+      .then(dbBook => res.json(dbBook))
+      .catch(err => res.status(422).json(err));
+  },
+remove: function(req, res) {
+    db.Book
+      .findById({ _id: req.params.id })
+      .then(dbBook => dbBook.remove())
+      .then(dbBook => res.json(dbBook))
+      .catch(err => res.status(422).json(err));
+  },
+  find: function(req, res) {
+    db.Book
+      .find({favorite: true})
+      .then(dbBook => res.json(dbBook))
+      .catch(err => res.status(422).json(err));
+  },
+}

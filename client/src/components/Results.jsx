@@ -1,5 +1,5 @@
 import React from "react";
-
+// import SaveButton from "./SaveButton"
 function Results(props) {
   return (
   <div className="box">
@@ -10,6 +10,7 @@ function Results(props) {
       </figure>
     </div>
     <div className="media-content">
+      {/* <SaveButton key={props.id} onClick={props.favoriteBook} id={book._id}/>  */}
       <div className="content">
         <p>
           <strong><a href={props.link}> Book Title:{props.title}</a></strong> <br />

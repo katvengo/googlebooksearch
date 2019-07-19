@@ -26,7 +26,7 @@ link: {
 
 favorite: {
     type: Boolean,
-    default: false,
+    default: true,
   },
 
 })
