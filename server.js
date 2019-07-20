@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(routes);
 
 mongoose.connect(
-  process.env.MONGODB_URI || 
+  process.env.MONGOLAB_MAUVE_URI || 
    `mongodb://${USER}@ds353007.mlab.com:53007/heroku_x8trmwc1`,
    { useNewUrlParser: true }
   );
