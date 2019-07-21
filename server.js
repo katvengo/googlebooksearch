@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 require("dotenv").config()
 
-const USER = process.env.USER
+const USERINFO = process.env.USERINFO
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -14,14 +14,14 @@ app.use(express.json());
 
 // Serve up static assets (usually on heroku)
 // if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(_dirname, "client" , "build")));
+  app.use(express.static(path.join(__dirname, "client" , "build")));
 // } 
 
 app.use(routes);
 
 mongoose.connect(
-  process.env.MONGOLAB_MAUVE_URI || 
-   `mongodb://${USER}@ds353007.mlab.com:53007/heroku_x8trmwc1`,
+  process.env.MONGODB_URI || 
+   `mongodb://${USERINFO}@ds353457.mlab.com:53457/heroku_3ht04m3d`,
    { useNewUrlParser: true }
   );
 
@@ -41,4 +41,3 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
-
