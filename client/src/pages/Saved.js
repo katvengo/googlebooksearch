@@ -1,5 +1,6 @@
 import React from "react";
 import SavedResults from "../components/SavedResults"
+import API from "../utils/API";
 
 class Saved extends React.Component {
     state = { 
@@ -25,7 +26,7 @@ class Saved extends React.Component {
           )
           .catch(err => console.log(err));
       };
-      
+
     render() { 
         return ( 
             <>
