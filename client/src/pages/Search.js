@@ -50,20 +50,20 @@ class Search extends React.Component {
     });
   };
 
-    loadBooks = () => {
-      API.getSavedBooks()
-        .then(res =>
-          this.setState({ 
-          id: this.state.book.id,
-          image: this.state.book.volumeInfo.imageLinks.thumbnail,
-          title: this.state.book.volumeInfo.title,
-          author: this.state.book.volumeInfo.authors,
-          description: this.state.book.volumeInfo.description,
-          link: this.state.book.volumeInfo.infoLink,
-          favorite: true})
-        )
-        .catch(err => console.log(err));
-    };
+    // loadBooks = () => {
+    //   API.getSavedBooks()
+    //     .then(res =>
+    //       this.setState({ 
+    //       id: this.state.book.id,
+    //       image: this.state.book.volumeInfo.imageLinks.thumbnail,
+    //       title: this.state.book.volumeInfo.title,
+    //       author: this.state.book.volumeInfo.authors,
+    //       description: this.state.book.volumeInfo.description,
+    //       link: this.state.book.volumeInfo.infoLink,
+    //       favorite: true})
+    //     )
+    //     .catch(err => console.log(err));
+    // };
 
   handleFormSubmit = event => {
     event.preventDefault();
