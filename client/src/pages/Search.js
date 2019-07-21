@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Results from "../components/Results";
 import API from "../utils/API";
 import SaveButton from '../components/SaveButton'
@@ -20,19 +20,13 @@ const styles = {
     marginRight: 25
   }
 };
-class Search extends React.Component {
+class Search extends Component {
   state = {
     search: "",
     books: [],
-    key: "",
-    image: "",
-    title: "",
-    author: "",
-    description: "",
-    link: "",
-    favorite: false
-    
+    book: "",
   };
+
   searchGoogle = query => {
     API.search(query)
       .then(res => {
@@ -50,34 +44,28 @@ class Search extends React.Component {
     });
   };
 
-    // loadBooks = () => {
-    //   API.getSavedBooks()
-    //     .then(res =>
-    //       this.setState({ 
-    //       id: this.state.book.id,
-    //       image: this.state.book.volumeInfo.imageLinks.thumbnail,
-    //       title: this.state.book.volumeInfo.title,
-    //       author: this.state.book.volumeInfo.authors,
-    //       description: this.state.book.volumeInfo.description,
-    //       link: this.state.book.volumeInfo.infoLink,
-    //       favorite: true})
-    //     )
-    //     .catch(err => console.log(err));
-    // };
 
   handleFormSubmit = event => {
     event.preventDefault();
     this.searchGoogle(this.state.search);
   };
+ favoriteBook(data) {
+    var book = {
+        title: data.title,
+        authors: data.authors,
+        description: data.description,
+        image: data.imageLinks.thumbnail,
+        link: data.previewLink
+    };
+          API.saveBook(book)
+           .then(
+             console.log(book)
 
-  favoriteBook = (id, e) => {
-    e.preventDefault();
-    console.log("something" + id)
-      API.saveBook(id)
-        .then(res => this.loadBooks())
-        .catch(err => console.log(err));
-    }
-  
+           )
+           .catch(err => {
+            console.log(err)
+            })
+}
   
   render() {
     return (
@@ -117,17 +105,17 @@ class Search extends React.Component {
           <section className="section">
             <div className="container">
               <h1 className="title">Results</h1>
-              {this.state.books.map(book => (
-                <div key={book.id}>
-                <SaveButton id={book._id} key={book._id} onPress={(e) => this.favoriteBook(book.id, e)}  />
+              {this.state.books.map((book, index) => (
+                <div key={index}>
+                <SaveButton onClick={ () => this.favoriteBook(book.volumeInfo)} />
                 <Results 
+                  book={book.volumeInfo}
                   id={book.id}
                   image={book.volumeInfo.imageLinks.thumbnail}
                   title={book.volumeInfo.title}
                   author={book.volumeInfo.authors}
                   description={book.volumeInfo.description}
                   link={book.volumeInfo.infoLink}
-                  
                 /> 
                  </div>
                   ))}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 const styles = {
@@ -11,7 +11,7 @@ const styles = {
   },
 };
 
-class NavBar extends React.Component {
+class NavBar extends Component {
     state = {  }
     render() { 
         return ( 
@@ -31,7 +31,7 @@ class NavBar extends React.Component {
 
   <div id="navbarBasicExample" className="navbar-menu">
     <div className="navbar-start">
-      <Link to="/search" className="navbar-item" style={styles.title}>
+      <Link to="/" className="navbar-item" style={styles.title}>
         Search
       </Link>
 

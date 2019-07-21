@@ -1,32 +1,16 @@
 import React from "react";
 import SavedResults from "../components/SavedResults"
-import API from "../utils/API";
+import API from '../utils/API'
 
 class Saved extends React.Component {
     state = { 
-        key: "",
-        image: "",
-        title: "",
-        author: "",
-        description: "",
-        link: "",
+        book: {}
      }
-
-     loadBooks = () => {
-        API.getSavedBooks()
-          .then(res =>
-            this.setState({ 
-            id: this.state.book.id,
-            image: this.state.book.volumeInfo.imageLinks.thumbnail,
-            title: this.state.book.volumeInfo.title,
-            author: this.state.book.volumeInfo.authors,
-            description: this.state.book.volumeInfo.description,
-            link: this.state.book.volumeInfo.infoLink,
-            favorite: true})
-          )
+     componentDidMount() {
+        API.getSavedBooks(this.props.match.params.id)
+          .then(res => this.setState({ book: res.data }))
           .catch(err => console.log(err));
-      };
-
+      }
     render() { 
         return ( 
             <>
