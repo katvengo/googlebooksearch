@@ -21,7 +21,7 @@ app.use(routes);
 
 mongoose.connect(
   process.env.MONGODB_URI || 
-   `mongodb://${USERINFO}@ds353457.mlab.com:53457/heroku_3ht04m3d`,
+   `mongodb://katvengo2:Horses100@ds353457.mlab.com:53457/heroku_3ht04m3d`,
    { useNewUrlParser: true }
   );
 
