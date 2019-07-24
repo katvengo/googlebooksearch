@@ -1,30 +1,48 @@
 import React from "react";
 import SavedResults from "../components/SavedResults"
 import API from '../utils/API'
+import DeleteButton from '../components/DeleteButton'
 
 class Saved extends React.Component {
     state = { 
-        book: {}
+        books: []
      }
      componentDidMount() {
-        API.getSavedBooks(this.props.match.params.id)
-          .then(res => this.setState({ book: res.data }))
-          .catch(err => console.log(err));
-      }
+      this.getSavedBooks();
+    }
+  
+    getSavedBooks = () => {
+      API.getSavedBooks()
+        .then(res =>
+          this.setState({
+            books: res.data
+          })
+        )
+        .catch(err => console.log(err));
+    };
+
+    deleteBookById = id => {
+      API.deleteBook(id).then(res => this.getSavedBooks());
+    }
     render() { 
         return ( 
             <>
-             {this.state.books.map(book => (
-                <div key={book.id}>
+             {this.state.books.map((book, index) => (
+                <div key={index}>
                 <SavedResults
                   id={book.id}
-                  image={book.volumeInfo.imageLinks.thumbnail}
-                  title={book.volumeInfo.title}
-                  author={book.volumeInfo.authors}
-                  description={book.volumeInfo.description}
-                  link={book.volumeInfo.infoLink}
-                  
-                /> 
+                  image={book.image} 
+                  title={book.title}
+                  authors={book.authors.toString()}
+                  description={book.description}
+                  link={book.infoLink}
+                  DeleteButton={() => (
+                    <button
+                      onClick={() => this.deleteBookById(book.id)}
+                    >
+                      Delete
+                    </button>
+                  )}                   />
                  </div>
                   ))}
             </>

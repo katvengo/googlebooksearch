@@ -111,9 +111,9 @@ class Search extends Component {
                 <Results 
                   book={book.volumeInfo}
                   id={book.id}
-                  image={book.volumeInfo.imageLinks.thumbnail}
+                  image={book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail  : '' } 
                   title={book.volumeInfo.title}
-                  author={book.volumeInfo.authors}
+                  authors={book.volumeInfo.authors ? book.volumeInfo.authors.toString()  : ''}
                   description={book.volumeInfo.description}
                   link={book.volumeInfo.infoLink}
                 /> 

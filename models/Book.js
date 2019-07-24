@@ -8,8 +8,8 @@ title: {
     type: String,
 },
 
-author:{
-    type: String,
+authors:{
+    type: [String],
 },
 
 description: {

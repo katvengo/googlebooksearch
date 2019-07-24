@@ -5,19 +5,14 @@ import NavBar from './components/NavBar'
 import Hero from './components/Hero'
 import Search from './pages/Search'
 import Saved from './pages/Saved'
-// import Saved from './components/Saved'
+
 function App() {
   return (
-    // <div>
-    // <Nav/>
-    // <Search/>
-    // </div>
-    
+  
     <Router>
+      <div>
       <NavBar/>
       <Hero />
-      <div>
-        
         <Switch>
           <Route exact path="/Search" component={Search} />
           <Route exact path="/saved" component={Saved} />
